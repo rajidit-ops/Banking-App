@@ -27,7 +27,7 @@ def signup(request):
             })
 
 
-        UserAccounts.objects.create(
+        UserAccounts.objects.create_user(
             first_name = fname,
             last_name = lname,
             email = email,
@@ -44,21 +44,22 @@ def signup(request):
         return render(request,'user_accounts/signin.html')
     return render(request,'user_accounts/signup.html')
 
-
-def login(request):
+def login_user(request):
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
-        print(email,password)
 
-        user = authenticate(request, username=email, password=password)
+        try:
+            user = UserAccounts.objects.get(email=email)
 
-        if user is not None:
-            print("auth success")
-            messages.info(request,"successfully authenticated")
-            login(request, user)
-            return redirect('/signup/')
-        else:
-            print("unsuccess")
-            messages.error(request,"Invalid credentials")
-    return render(request, 'user_accounts/signin.html')
+            if user.password == password:
+                request.session["user_email"] = user.email
+                request.session["user_name"] = user.first_name
+                messages.success(request, "Login successful")
+                return redirect("/")
+            else:
+                messages.error(request, "Invalid password")
+        except UserAccounts.DoesNotExist:
+            messages.error(request, "User does not exist")
+
+    return render(request, "user_accounts/signin.html")
