@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MyBank | Sign Up</title>
+    <title>MyBank | Sign In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
@@ -21,42 +21,31 @@
             justify-content: center;
         }
 
-        /* Card */
-        .signup-card {
+        /* Login Card */
+        .login-card {
             background: #ffffff;
-            width: 420px;
+            width: 380px;
             padding: 35px;
             border-radius: 14px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
 
-        .signup-card h2 {
+        .login-card h2 {
             text-align: center;
             color: #003366;
             margin-bottom: 8px;
         }
 
-        .signup-card p {
+        .login-card p {
             text-align: center;
             color: #666;
             font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        /* Error message */
-        .error {
-            background: #ffe5e5;
-            color: #b30000;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 14px;
-            margin-bottom: 15px;
-            text-align: center;
+            margin-bottom: 30px;
         }
 
         /* Form */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
@@ -79,19 +68,26 @@
             border-color: #00509e;
         }
 
-        /* Checkbox */
-        .checkbox {
+        /* Remember Me */
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 13px;
-            margin: 10px 0 15px;
+            margin-bottom: 20px;
         }
 
-        .checkbox a {
+        .options a {
             color: #00509e;
             text-decoration: none;
         }
 
+        .options a:hover {
+            text-decoration: underline;
+        }
+
         /* Button */
-        .btn-signup {
+        .btn-login {
             width: 100%;
             background: #00509e;
             color: white;
@@ -103,79 +99,51 @@
             transition: background 0.3s;
         }
 
-        .btn-signup:hover {
+        .btn-login:hover {
             background: #003f7f;
         }
 
         /* Footer */
-        .signup-footer {
+        .login-footer {
             text-align: center;
             margin-top: 20px;
             font-size: 14px;
         }
 
-        .signup-footer a {
+        .login-footer a {
             color: #00509e;
-            font-weight: 600;
             text-decoration: none;
+            font-weight: 600;
         }
 
-        .signup-footer a:hover {
+        .login-footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<div class="signup-card">
+<div class="login-card">
     <h2>MyBank</h2>
-    <p>Create your account</p>
-
-    {% if error %}
-        <div class="error">{{ error }}</div>
-    {% endif %}
+    <p>validate otp</p>
 
     <form method="post">
         {% csrf_token %}
 
         <div class="form-group">
-            <label>First Name</label>
-            <input type="text" name="fname" placeholder="Enter first name" required>
+            <label>OTP</label>
+            <input type="text" name="otp" placeholder="Enter your otp" required>
         </div>
 
-        <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" name="lname" placeholder="Enter last name" required>
+            <a href="#">Didn't recieve otp? Generate one</a>
         </div>
 
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="Enter email address" required>
-        </div>
-
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="psw" placeholder="Create password" required>
-        </div>
-
-        <div class="form-group">
-            <label>Confirm Password</label>
-            <input type="password" name="psw-repeat" placeholder="Confirm password" required>
-        </div>
-
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" required>
-                I agree to the <a href="#">Terms & Privacy</a>
-            </label>
-        </div>
-
-        <button type="submit" class="btn-signup">Create Account</button>
+        <button type="submit" class="btn-login">Submit Otp</button>
     </form>
 
-    <div class="signup-footer">
-        Already have an account?
-        <a href="/user_accounts/login">Sign In</a>
+    <div class="login-footer">
+        Don’t have an account?
+        <a href="/user_accounts/signup">Sign Up</a>
     </div>
 </div>
 
