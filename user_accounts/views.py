@@ -65,11 +65,7 @@ def login_user(request):
                 )       
                 request.session["otp_email"] = user.email
                 messages.success(request,"otp sent successfully")
-                return render(request, 'user_accounts/otp.html')
-            #     messages.success(request, "Login successful")
-            #     return redirect("/")
-            # else:
-                messages.error(request, "Invalid password")
+                return redirect('otp')
         except UserAccounts.DoesNotExist:
             messages.error(request, "User does not exist")
 
@@ -90,7 +86,7 @@ def verify_otp(request):
 
             if res.is_expired():
                 messages.error(request,"otp timedout")
-                return redirect('otp/')
+                return redirect('signin')
             res.is_verified = True
             res.save()
 
