@@ -59,7 +59,7 @@ def login_user(request):
 
                 send_mail(
                     subject = "Login Code",
-                    message= f"Hi {request.session["user_name"]} , Login code for My Bank app is \n {otp}",
+                    message= f'''Hi {request.session["user_name"]} , Login code for My Bank app is \n {otp}''',
                     from_email = settings.DEFAULT_FROM_EMAIL,
                     recipient_list= {email}
                 )       
