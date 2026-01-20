@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'bankproject.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'database-1',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'Test1234',
         'HOST': 'database-1.cbci2k6g6uv1.eu-north-1.rds.amazonaws.com',
