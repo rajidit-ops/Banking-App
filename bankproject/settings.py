@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-i*zg*61e4@2pj-)$(8mj0z7k=o2pxsmzvdfnv6o9rg#r4a+gc*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['banking-app-453692805155.europe-west1.run.app']
+ALLOWED_HOSTS = ['13.51.175.112']
 
 
 # Application definition
